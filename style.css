@@ -28,19 +28,20 @@
 @property --un-gradient-via-stops{syntax:"*";inherits:false;}
 @property --un-space-y-reverse{syntax:"*";inherits:false;initial-value:0;}
 /* layer: theme */
-:root, :host { --spacing: 0.25rem; --default-transition-timingFunction: cubic-bezier(0.4, 0, 0.2, 1); --default-transition-duration: 150ms; --colors-white: #fff; --tracking-wider: 0.05em; --font-mono: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; --fontWeight-semibold: 600; --font-serif: ui-serif,Georgia,Cambria,"Times New Roman",Times,serif; --radius-lg: 0.5rem; --colors-gray-900: oklch(21% 0.034 264.665); --colors-purple-500: oklch(62.7% 0.265 303.9); --colors-blue-500: oklch(62.3% 0.214 259.815); --colors-purple-900: oklch(38.1% 0.176 304.987); --font-sans: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"; --default-font-family: var(--font-sans); --default-monoFont-family: var(--font-mono); --colors-blue-DEFAULT: oklch(70.7% 0.165 254.624); --colors-yellow-DEFAULT: oklch(85.2% 0.199 91.936); --container-md: 28rem; --container-sm: 24rem; }
+:root, :host { --spacing: 0.25rem; --font-serif: ui-serif,Georgia,Cambria,"Times New Roman",Times,serif; --tracking-wider: 0.05em; --radius-lg: 0.5rem; --colors-gray-900: oklch(21% 0.034 264.665); --colors-white: #fff; --font-sans: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"; --font-mono: ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; --default-font-family: var(--font-sans); --default-monoFont-family: var(--font-mono); --default-transition-timingFunction: cubic-bezier(0.4, 0, 0.2, 1); --default-transition-duration: 150ms; --fontWeight-semibold: 600; --colors-purple-500: oklch(62.7% 0.265 303.9); --colors-blue-DEFAULT: oklch(70.7% 0.165 254.624); --colors-yellow-DEFAULT: oklch(85.2% 0.199 91.936); --colors-purple-900: oklch(38.1% 0.176 304.987); --fontWeight-thin: 100; --fontWeight-light: 300; }
 /* layer: base */
  *, ::after, ::before, ::backdrop, ::file-selector-button { box-sizing: border-box;  margin: 0;  padding: 0;  border: 0 solid;  }  html, :host { line-height: 1.5;  -webkit-text-size-adjust: 100%;  tab-size: 4;  font-family: var( --default-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' );  font-feature-settings: var(--default-font-featureSettings, normal);  font-variation-settings: var(--default-font-variationSettings, normal);  -webkit-tap-highlight-color: transparent;  }  hr { height: 0;  color: inherit;  border-top-width: 1px;  }  abbr:where([title]) { -webkit-text-decoration: underline dotted; text-decoration: underline dotted; }  h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: inherit; }  a { color: inherit; -webkit-text-decoration: inherit; text-decoration: inherit; }  b, strong { font-weight: bolder; }  code, kbd, samp, pre { font-family: var( --default-monoFont-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace );  font-feature-settings: var(--default-monoFont-featureSettings, normal);  font-variation-settings: var(--default-monoFont-variationSettings, normal);  font-size: 1em;  }  small { font-size: 80%; }  sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sub { bottom: -0.25em; } sup { top: -0.5em; }  table { text-indent: 0;  border-color: inherit;  border-collapse: collapse;  }  :-moz-focusring:where(:not(iframe)) { outline: auto; }  progress { vertical-align: baseline; }  summary { display: list-item; }  ol, ul, menu { list-style: none; }  img, svg, video, canvas, audio, iframe, embed, object { display: block;  vertical-align: middle;  }  img, video { max-width: 100%; height: auto; }  button, input, select, optgroup, textarea, ::file-selector-button { font: inherit;  font-feature-settings: inherit;  font-variation-settings: inherit;  letter-spacing: inherit;  color: inherit;  border-radius: 0;  background-color: transparent;  opacity: 1;  }  :where(select:is([multiple], [size])) optgroup { font-weight: bolder; }  :where(select:is([multiple], [size])) optgroup option { padding-inline-start: 20px; }  ::file-selector-button { margin-inline-end: 4px; }  ::placeholder { opacity: 1; }  @supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px)  { ::placeholder { color: color-mix(in oklab, currentcolor 50%, transparent); } }  textarea { resize: vertical; }  ::-webkit-search-decoration { -webkit-appearance: none; }  ::-webkit-date-and-time-value { min-height: 1lh;  text-align: inherit;  }  ::-webkit-datetime-edit { display: inline-flex; }  ::-webkit-datetime-edit-fields-wrapper { padding: 0; } ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field { padding-block: 0; }  ::-webkit-calendar-picker-indicator { line-height: 1; }  :-moz-ui-invalid { box-shadow: none; }  button, input:where([type='button'], [type='reset'], [type='submit']), ::file-selector-button { appearance: button; }  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button { height: auto; }  [hidden]:where(:not([hidden~='until-found'])) { display: none !important; }
 /* layer: default */
 .text-6\/12{font-size:1.5rem;line-height:3rem;}
-[text~="\31 6\/36"]{font-size:4rem;line-height:9rem;}
+.text-2\.5,
+[text-2\.5=""],
+[text~="\32 \.5"]{font-size:0.625rem;}
 .text-blue,
 [text-blue=""]{color:color-mix(in srgb, var(--colors-blue-DEFAULT) var(--un-text-opacity), transparent);}
 .text-white,
 [text-white=""]{color:color-mix(in srgb, var(--colors-white) var(--un-text-opacity), transparent);}
 [text-30=""]{font-size:7.5rem;}
 [text-6=""]{font-size:1.5rem;}
-[text~="\33 "]{font-size:0.75rem;}
 .tracking-wider,
 [tracking-wider=""]{--un-tracking:var(--tracking-wider);letter-spacing:var(--tracking-wider);}
 .font-mono,
@@ -59,12 +60,12 @@
 [mb\.7=""]{margin-bottom:calc(var(--spacing) * 0.7);}
 .p2,
 [p2=""]{padding:calc(var(--spacing) * 2);}
+.p3,
+[p3=""]{padding:calc(var(--spacing) * 3);}
 .px3,
 [px3=""]{padding-inline:calc(var(--spacing) * 3);}
 .px6,
 [px6=""]{padding-inline:calc(var(--spacing) * 6);}
-.pb6,
-[pb6=""]{padding-bottom:calc(var(--spacing) * 6);}
 .pt\.3,
 [pt\.3=""]{padding-top:calc(var(--spacing) * 0.3);}
 .text-center,
@@ -91,8 +92,6 @@
 [underline=""]{text-decoration-line:underline;}
 .flex,
 [flex=""]{display:flex;}
-.shrink-0,
-[shrink-0=""]{flex-shrink:0;}
 .flex-grow,
 .grow,
 [flex-grow=""],
@@ -156,4 +155,15 @@
 [hover~="bg-white\/30"]:hover{background-color:color-mix(in oklab, var(--colors-white) 30%, transparent);}
 .shadow-white\/40{--un-shadow-color:color-mix(in oklab, color-mix(in oklab, var(--colors-white) 40%, transparent) var(--un-shadow-opacity), transparent);}
 [hover~="shadow-white\/40"]:hover{--un-shadow-color:color-mix(in oklab, color-mix(in oklab, var(--colors-white) 40%, transparent) var(--un-shadow-opacity), transparent);}
+}
+@media (min-width: 48rem){
+.md\:text-3,
+[md\:text-3=""]{font-size:0.75rem;}
+.md\:p6,
+[md\:p6=""]{padding:calc(var(--spacing) * 6);}
+.md\:flex-row,
+[md\:flex-row=""]{flex-direction:row;}
+.md\:h-100,
+[md\:h-100=""],
+[md~="h-100"]{height:calc(var(--spacing) * 100);}
 }
