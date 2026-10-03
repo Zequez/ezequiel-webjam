@@ -37,14 +37,16 @@ html(h-full)
         span(mb.7) ▶
 
     main(w-full p6 max-w-screen-md mx-auto)
-      div(flex-grow w-full bg-white rounded-lg p3 md:p6 flex-cc flex-col gap-3 md:gap-6 bg-linear-to-b from="white/20")
+      div(relative flex-grow w-full bg-gray-50 shadow-md rounded-lg p3 md:p6 flex-cc flex-col gap-3 md:gap-6)
+        div(absolute top-0 left-0 w-full rounded-lg h-100 bg-linear-to-b from="white/10" z-100 pointer-events-none)
         +WrapBox
           img(src="images/ezequiel-humano/sm.webp" rounded-2 w-full)
           div(uppercase font-serif text-center flex-cc w-full text-30) Hey 
         +WrapBox
           div(flex-cc text-center w-full flex-col)
-            | My name is Ezequiel Adrián Schwartzman
-            div I'm an open source commons developer working on Gaia's Team
+            | My name is Ezequiel Adrián Schwartzman.
+            div I'm a free software developer.
+            div If you are on team Gaia, I'm on your team.
             div
               | I'm creating the Web Jam Editor
               a(href="https://webjam.space" block text-blue underline) https://webjam.space
@@ -60,15 +62,15 @@ html(h-full)
         div(grid cols-2 gap-3 md:gap-6)
           img(src="images/ezequiel-karina/sm.webp" max-w-full rounded-2 object-cover)
           img(src="images/ezequiel-nami/sm.webp" max-w-full rounded-2 object-cover)
-        div(text-center px6 flex-cc flex-col grow)
+        div(text-center px6 grow)
           | I'm also a human being with a human face.
-          | You can find mi living at Casa Nami co-living in Mar del Plata, Argentina, where I'm holding space for evolutionary convivency
+          | You can find me holding space at <a class="text-blue underline" href="https://casanami.art">Casa Nami</a> co-living in Mar del Plata, Argentina, where I'm holding space for evolutionary convivency.
           div
             span Contact me on 
             a(href="https://t.me/ezequielschwartzman" text-blue underline) Telegram
             span  or  
             a(href="https://wa.me/5492235235568" text-blue underline) Whatsapp
-        a(href="https://forms.gle/pkvnMysirAUopCzj6" w-full h-20 flex-cc text-6/12 bg-yellow-400 hover:bg-yellow-300 text-white rounded-2 font-mono text-center text-shadow="[0_1px_0_#0007]")
+        a(target="_blank" href="https://forms.gle/pkvnMysirAUopCzj6" w-full h-12 flex-cc text-6/12 bg-yellow-400 hover:bg-yellow-300 text-white rounded-2 font-mono text-center text-shadow="[0_1px_0_#0007]" b="1px black/10")
           | Consider supporting WebJam project
         
       
