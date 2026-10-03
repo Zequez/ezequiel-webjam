@@ -11,19 +11,24 @@ mixin FancyLink(link)
   )
     block
 
-
+mixin WrapBox()
+  div(w-full grid gap-3 md:gap-6 cols-1 md:cols-2)
+    block
+    
 html(h-full)
-  head(title="Ezequiel Adrián Schwartzman")
+  head
+    title Ezequiel Adrián Schwartzman
     meta(name="webjam-source" content="https://github.com/zequez/ezequiel-webjam")
     meta(name="viewport" content="width=device-width, initial-scale=1")
-  body(bg-gray-900 flex-col min-h-full)
-    div(h8.5 w-full bg-purple-500 flex text-white b-b-2 b-purple-900 )
+  body(bg-lime-950 flex-col min-h-full)
+    div(h8.5 w-full bg-lime-500 flex text-white b-b-2 b-lime-900 )
       +FancyLink("https://gaia.webjam.space")
         span(mb.7) ◀
         span Gaia
       a(
         href="https://ezequielschwartzman.org"
-        flex-grow text-center uppercase flex-cc
+        flex-grow text-center uppercase flex-cc text-3 md:text-4
+  
         font-mono font-semibold text-shadow="[0_1px_0_#000]"
         )
         | Ezequiel Adrián Schwartzman
@@ -31,13 +36,12 @@ html(h-full)
         span Gaia
         span(mb.7) ▶
 
-    main(w-full px6 pb6 max-w-screen-md mx-auto)
-      h1(text="16/36" text-center shrink-0 font-serif tracking-wider uppercase text-white) Visibility
-      div(flex-grow w-full bg-white rounded-lg p2 flex-cc flex-col gap-6)
-        div(flex w-full)
-          img(src="images/ezequiel-humano/sm.webp" h-100 rounded-2)
-          div(flex-cc uppercase font-mono text-center w-full grow text-30) Hey 
-        div(flex-cc w-full)
+    main(w-full p6 max-w-screen-md mx-auto)
+      div(flex-grow w-full bg-white rounded-lg p3 md:p6 flex-cc flex-col gap-3 md:gap-6 bg-linear-to-b from="white/20")
+        +WrapBox
+          img(src="images/ezequiel-humano/sm.webp" rounded-2 w-full)
+          div(uppercase font-serif text-center flex-cc w-full text-30) Hey 
+        +WrapBox
           div(flex-cc text-center w-full flex-col)
             | My name is Ezequiel Adrián Schwartzman
             div I'm an open source commons developer working on Gaia's Team
@@ -45,25 +49,26 @@ html(h-full)
               | I'm creating the Web Jam Editor
               a(href="https://webjam.space" block text-blue underline) https://webjam.space
               a(href="https://github.com/zequez/web-jam-editor" block text-blue underline) https://github.com/zequez/web-jam-editor
-          img(src="images/ezequiel-mate/sm.webp" h-100 rounded-2)
+          img(src="images/ezequiel-mate/sm.webp" max-w-full mx-auto rounded-2)
           
-        div(space-y-6)
-          img(src="images/ezequiel-mate-termo/sm.webp" h-100 rounded-2)
-          div(text-center)
-            span You can find my previous work at 
-            a(href="https://web7.ezequielschwartzman.org" text-blue underline) https://web7.ezequielschwartzman.org
-        img(src="images/ezequiel-karina/sm.webp" h-100 rounded-2)
-        div(flex w-full)
-          img(src="images/ezequiel-nami/sm.webp" h-100 rounded-2)
-          div(text-center px6 flex-cc flex-col grow)
-            | I'm also a human being with a human face.
-            | You can find mi living at Casa Nami co-living in Mar del Plata, Argentina, where I'm holding space for evolutionary convivency
+        +WrapBox
+          img(src="images/ezequiel-mate-termo/sm.webp" max-w-full mx-auto rounded-2)
+          div(text-center flex-cc)
             div
-              span Contact me on 
-              a(href="https://t.me/ezequielschwartzman" text-blue underline) Telegram
-              span  or  
-              a(href="https://wa.me/5492235235568" text-blue underline) Whatsapp
-        a(href="https://forms.gle/pkvnMysirAUopCzj6" w-full h-30 flex-cc text-6/12 bg-yellow text-white rounded-2 font-mono text-center)
+              span You can find my previous work at 
+              a(href="https://web7.ezequielschwartzman.org" text-blue underline) https://web7.ezequielschwartzman.org
+        div(grid cols-2 gap-3 md:gap-6)
+          img(src="images/ezequiel-karina/sm.webp" max-w-full rounded-2 object-cover)
+          img(src="images/ezequiel-nami/sm.webp" max-w-full rounded-2 object-cover)
+        div(text-center px6 flex-cc flex-col grow)
+          | I'm also a human being with a human face.
+          | You can find mi living at Casa Nami co-living in Mar del Plata, Argentina, where I'm holding space for evolutionary convivency
+          div
+            span Contact me on 
+            a(href="https://t.me/ezequielschwartzman" text-blue underline) Telegram
+            span  or  
+            a(href="https://wa.me/5492235235568" text-blue underline) Whatsapp
+        a(href="https://forms.gle/pkvnMysirAUopCzj6" w-full h-20 flex-cc text-6/12 bg-yellow-400 hover:bg-yellow-300 text-white rounded-2 font-mono text-center text-shadow="[0_1px_0_#0007]")
           | Consider supporting WebJam project
         
       
