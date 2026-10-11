@@ -1,76 +1,103 @@
-mixin FancyLink(link)
-  a(href=link
-    cursor-pointer h-6 m1 pt.3
-    text="3" rounded-1 flex-cc 
-    uppercase
-    transition-200
-    hover="bg-white/30 bg-gradient-to-br from-white/10 shadow-[0_1px_0] shadow-white/40 transition-0"
-    tracking-wider font-mono font-semibold px3
-    text-shadow="[0_1px_0_#0004]"
-    gap-1.5
+mixin EmojiFavicon(emoji)
+  link(
+    rel="icon"
+    type="image/svg+xml"
+    href=`data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
   )
+
+mixin Greeting(name)
+  p[text-white] Hello, #{name}!
+
+mixin FancyLink(link)
+  a[
+    flex-cc gap-1.5 h-6 pt.3 px3 cursor-pointer
+    font-mono font-semibold text-3 text-shadow-[0_1px_0_#0004] tracking-wider uppercase
+    m1 rounded-1 transition-200
+    hover:(bg-white/30 bg-gradient-to-br from-white/10 shadow-[0_1px_0] shadow-white/40 transition-0)
+  ](href=link)
     block
 
+mixin Ring(leftText, leftLink, centerText, centerLink, rightText, rightLink)
+  div[flex w-full text-white b-b-2 b-lime-900 bg-lime-500 h8.5]
+    +FancyLink(leftLink)
+      span[mb.7] ◀
+      span= leftText
+    a[
+      flex-cc flex-grow
+      font-mono font-semibold text-3 text-center text-shadow-[0_1px_0_#000] uppercase
+      md:text-4
+    ](href=centerLink)= centerText
+    +FancyLink(rightLink)
+      span= rightText
+      span[mb.7] ▶
+
 mixin WrapBox()
-  div(w-full grid gap-3 md:gap-6 cols-1 md:cols-2)
+  div[grid gap-3 w-full cols-1 md:gap-6 sm:cols-2]
     block
-    
+
+mixin Img(src)
+  img[w-full b-black/50 b-t-1 rounded-2 shadow-[0_1.5px_0_1px] shadow-gray-600](src=src)
+
 html(h-full)
   head
     title Ezequiel Adrián Schwartzman
     meta(name="webjam-source" content="https://github.com/zequez/ezequiel-webjam")
     meta(name="viewport" content="width=device-width, initial-scale=1")
-  body(bg-lime-950 flex-col min-h-full)
-    div(h8.5 w-full bg-lime-500 flex text-white b-b-2 b-lime-900 )
-      +FancyLink("https://gaia.webjam.space")
-        span(mb.7) ◀
-        span Gaia
-      a(
-        href="https://ezequielschwartzman.org"
-        flex-grow text-center uppercase flex-cc text-3 md:text-4
-  
-        font-mono font-semibold text-shadow="[0_1px_0_#000]"
-        )
-        | Ezequiel Adrián Schwartzman
-      +FancyLink("https://gaia.webjam.space")
-        span Gaia
-        span(mb.7) ▶
+    +EmojiFavicon("🌟")
+  body[flex-col min-h-full bg-lime-950]
+    +Ring(
+      "Gaia", "https://gaia.webjam.space",
+      "Ezequiel Adrián Schwartzman", "https://ezequielschwartzman.org",
+      "Gaia", "https://gaia.webjam.space"
+    )
 
-    main(w-full p6 max-w-screen-md mx-auto)
-      div(relative flex-grow w-full bg-gray-50 shadow-md rounded-lg p3 md:p6 flex-cc flex-col gap-3 md:gap-6)
-        div(absolute top-0 left-0 w-full rounded-lg h-100 bg-linear-to-b from="white/10" z-100 pointer-events-none)
+    main[max-w-screen-md mx-auto p6 w-full]
+      div[
+        flex-cc flex-col flex-grow relative gap-12 p3 w-full
+        bg-gray-50 rounded-lg shadow-md md:gap-6 md:p6
+      ]
+        div[
+          absolute left-0 top-0 z-100 h-100 pointer-events-none w-full
+          bg-linear-to-b from-white/10 rounded-lg
+        ]
         +WrapBox
-          img(src="images/ezequiel-humano/sm.webp" rounded-2 w-full)
-          div(uppercase font-serif text-center flex-cc w-full text-30) Hey 
-        +WrapBox
-          div(flex-cc text-center w-full flex-col)
-            | My name is Ezequiel Adrián Schwartzman.
-            div I'm a free software developer.
-            div If you are on team Gaia, I'm on your team.
-            div
-              | I'm creating the Web Jam Editor
-              a(href="https://webjam.space" block text-blue underline) https://webjam.space
-              a(href="https://github.com/zequez/web-jam-editor" block text-blue underline) https://github.com/zequez/web-jam-editor
-          img(src="images/ezequiel-mate/sm.webp" max-w-full mx-auto rounded-2)
-          
-        +WrapBox
-          img(src="images/ezequiel-mate-termo/sm.webp" max-w-full mx-auto rounded-2)
-          div(text-center flex-cc)
-            div
+          +Img("images/ezequiel-humano/sm.webp")
+          div[flex-cc text-center]
+            div[text-center]
+              div[flex-cc w-full font-serif text-20 text-center uppercase] Hey
+              | My name is <span class="font-serif">Ezequiel Adrián Schwartzman</span>.
+              div I'm a <strong>free software developer</strong>.
+              div If you are on Team Gaia, I'm on your team.
+              div
+                | My main creative project at the moment is <a class="text-blue hover:underline font-bold" href="https://webjam.space" target="_blank">Web Jam</a>.
+                
+        +WrapBox  
+          +Img("images/ezequiel-mate/sm.webp")
+          div[flex flex-col]
+            +Img("images/ezequiel-mate-termo/sm.webp")
+            div[flex-cc flex-col flex-grow text-center pt12 sm:pt-0]
               span You can find my previous work at 
-              a(href="https://web7.ezequielschwartzman.org" text-blue underline) https://web7.ezequielschwartzman.org
-        div(grid cols-2 gap-3 md:gap-6)
-          img(src="images/ezequiel-karina/sm.webp" max-w-full rounded-2 object-cover)
-          img(src="images/ezequiel-nami/sm.webp" max-w-full rounded-2 object-cover)
-        div(text-center px6 grow)
+              a[text-blue underline](href="https://web7.ezequielschwartzman.org") https://web7.ezequielschwartzman.org
+          
+        div[grid gap-3 cols-2 md:gap-6]
+          +Img("images/ezequiel-karina/sm.webp")
+          +Img("images/ezequiel-nami/sm.webp")
+        div[grow px6 text-center]
           | I'm also a human being with a human face.
           | You can find me holding space at <a class="text-blue underline" href="https://casanami.art">Casa Nami</a> co-living in Mar del Plata, Argentina, where I'm holding space for evolutionary convivency.
-          div
-            span Contact me on 
-            a(href="https://t.me/ezequielschwartzman" text-blue underline) Telegram
-            span  or  
-            a(href="https://wa.me/5492235235568" text-blue underline) Whatsapp
-        a(target="_blank" href="https://forms.gle/pkvnMysirAUopCzj6" w-full h-12 flex-cc text-6/12 bg-yellow-400 hover:bg-yellow-300 text-white rounded-2 font-mono text-center text-shadow="[0_1px_0_#0007]" b="1px black/10")
+          div[mt12]
+            span Contact me on:
+            div[text-4 uppercase]
+              a[text-sky-400 hover:(bg-sky-300 text-white) px1 py1 rounded-1  font-mono](href="https://t.me/ezequielschwartzman")
+                span[mr1.5 text-2.5em icon-fab-telegram inline-block translate-y-2px]
+                | Telegram
+              span[mx1.5 mr3 text-3 mt1 font-bold]  or
+              a[text-green-400 font-mono hover:(bg-green-300 text-white) px1 py1 rounded-1](href="https://wa.me/5492235235568")
+                span[mr1.5 text-2.5em icon-fab-whatsapp inline-block translate-y-2px]
+                | Whatsapp
+        a[
+          flex-cc px6 w-full font-mono text-6/12 text-center text-shadow-[0_1px_0_#0007]
+          text-white b b-1px-black/10 b-black/20 bg-yellow-400 rounded-2
+          hover:bg-yellow-300
+        ](target="_blank" href="https://forms.gle/pkvnMysirAUopCzj6")
           | Consider supporting WebJam project
-        
-      
