@@ -18,7 +18,7 @@ mixin FancyLink(link)
     block
 
 mixin Ring(leftText, leftLink, centerText, centerLink, rightText, rightLink)
-  div[flex w-full text-white b-b-2 b-lime-900 bg-lime-500 h8.5]
+  div[flex w-full text-white b-t-2 b-lime-400 bg-lime-500 h8.5]
     +FancyLink(leftLink)
       span[mb.7] ◀
       span= leftText
@@ -45,13 +45,11 @@ html(h-full)
     meta(name="viewport" content="width=device-width, initial-scale=1")
     +EmojiFavicon("🌟")
   body[flex-col min-h-full bg-lime-950]
-    +Ring(
-      "Gaia", "https://gaia.webjam.space",
-      "Ezequiel Adrián Schwartzman", "https://ezequielschwartzman.org",
-      "Gaia", "https://gaia.webjam.space"
-    )
+   
 
     main[max-w-screen-md mx-auto p6 w-full]
+      //div[]
+      //  div[flex-cc text-white] Ezequiel Adrián Schwartzman
       div[
         flex-cc flex-col flex-grow relative gap-12 p3 w-full
         bg-gray-50 rounded-lg shadow-md md:gap-6 md:p6
@@ -101,3 +99,9 @@ html(h-full)
           hover:bg-yellow-300
         ](target="_blank" href="https://forms.gle/pkvnMysirAUopCzj6")
           | Consider supporting WebJam project
+
+  +Ring(
+      "Gaia", "https://gaia.webjam.space",
+      "Ezequiel Adrián Schwartzman", "https://ezequielschwartzman.org",
+      "Gaia", "https://gaia.webjam.space"
+    )
