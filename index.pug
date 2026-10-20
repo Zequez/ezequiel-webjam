@@ -1,107 +1,94 @@
-mixin EmojiFavicon(emoji)
-  link(
-    rel="icon"
-    type="image/svg+xml"
-    href=`data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
-  )
-
-mixin Greeting(name)
-  p[text-white] Hello, #{name}!
-
-mixin FancyLink(link)
-  a[
-    flex-cc gap-1.5 h-6 pt.3 px3 cursor-pointer
-    font-mono font-semibold text-3 text-shadow-[0_1px_0_#0004] tracking-wider uppercase
-    m1 rounded-1 transition-200
-    hover:(bg-white/30 bg-gradient-to-br from-white/10 shadow-[0_1px_0] shadow-white/40 transition-0)
-  ](href=link)
-    block
-
-mixin Ring(leftText, leftLink, centerText, centerLink, rightText, rightLink)
-  div[flex w-full text-white b-t-2 b-lime-400 bg-lime-500 h8.5]
-    +FancyLink(leftLink)
-      span[mb.7] ◀
-      span= leftText
-    a[
-      flex-cc flex-grow
-      font-mono font-semibold text-3 text-center text-shadow-[0_1px_0_#000] uppercase
-      md:text-4
-    ](href=centerLink)= centerText
-    +FancyLink(rightLink)
-      span= rightText
-      span[mb.7] ▶
-
-mixin WrapBox()
-  div[grid gap-3 w-full cols-1 md:gap-6 sm:cols-2]
-    block
-
-mixin Img(src)
-  img[w-full b-black/50 b-t-1 rounded-2 shadow-[0_1.5px_0_1px] shadow-gray-600](src=src)
-
-html(h-full)
+html(h-full="")
   head
+    link(
+      href="style.css" 
+      rel="stylesheet"
+      )
     title Ezequiel Adrián Schwartzman
-    meta(name="webjam-source" content="https://github.com/zequez/ezequiel-webjam")
-    meta(name="viewport" content="width=device-width, initial-scale=1")
-    +EmojiFavicon("🌟")
-  body[flex-col min-h-full bg-lime-950]
-   
-
-    main[max-w-screen-md mx-auto p6 w-full]
-      //div[]
-      //  div[flex-cc text-white] Ezequiel Adrián Schwartzman
+    meta(
+      content="https://github.com/zequez/ezequiel-webjam" 
+      name="webjam-source"
+      )
+    meta(
+      content="width=device-width, initial-scale=1"
+      name="viewport"
+      )
+    link(
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>" 
+      type="image/svg+xml" 
+      rel="icon"
+      )
+  body[flex-col min-h-full bg-[url(./images/old-moon-invert/md.webp)] bg-slate-400]
+    div[flex flex-col gap-1 max-w-screen-sm mx-auto p1 sm:p6]
+      div[flex gap-1 sm:gap-3]
+        div[shrink-0 w-1/2 bg-white/0 shadow-sm sm:w-1/3]
+          img[h-full rounded-1](src="./images/ezequiel-humano/md.webp")
+        div[flex flex-col grow gap-1 font-mono whitespace-nowrap sm:gap-3]
+          div[
+            flex-cc h-full px1 py3 font-bold text-[5vw] lh-160% sm:text-5/8 text-center
+            bg-black text-black relative rounded-1 shadow-sm sm:h-30 sm:px3
+          ]
+            canvas[absolute block w-100% h-100% top-0 left-0](id="title-bg")
+            script.
+              const C = document.getElementById('title-bg');
+              const c = C.getContext('2d');
+              const {width, height} = C.getBoundingClientRect()
+              C.width = width;
+              C.height = height;
+              c.fillStyle   = 'white';
+              c.beginPath()
+              const [x, y, radius] = [20, 20, 2]
+              c.arc(x, y, radius, 0, Math.PI * 2)
+              c.fill()
+            //div[absolute bg-gradient-to-t from-black/5 inset-4  bg-white rounded-3 flex-cc] Ezequiel <br class="sm:hidden"/> Adrián <br/> Schwartzman
+          div[grow hidden px3 text-center bg-white rounded-1 shadow-sm sm:flex-cc]
+            span Free Software Developer
+          div[grow hidden px3 text-center bg-white rounded-1 shadow-sm sm:flex-cc]
+            span
+              | Possibilitator 
+              i in training
+      div[flex flex-col gap-1 font-mono sm:hidden]
+        div[flex-cc grow px3 text-center bg-white h12 rounded-1]
+          span Free Software Developer
+        div[flex-cc grow px3 text-center bg-white h12 rounded-1]
+          span
+            | Possibilitator 
+            i in training
+    div[
+      flex-cc relative h-24 p6 font-mono text-lime-300
+      b-b-4 b-b-black/20 b-t-1 b-t-white/30 bg-gray-800 bg-linear-to-t from-black/7 shadow-[0_2px_3px_#0005]
+    ]
+      div[absolute inset-x-0 top-1px h-1px bg-white/15]
+      // span Web Jam 0.2.0 is out.  <a class="underline" href="https://github.com/Zequez/web-jam-editor/blob/main/CHANGELOG.md">Check changelog</a>
+    mixin ROW(h)
+      div[flex gap-1 h-${h} sm:gap-3]
+        block
+    mixin CARD(w)
       div[
-        flex-cc flex-col flex-grow relative gap-12 p3 w-full
-        bg-gray-50 rounded-lg shadow-md md:gap-6 md:p6
+        flex-cc px-2 w-${w} break-all font-mono text-6
+        @container bg-gray-50 bg-linear-to-t from-black/5 overflow-hidden rounded-1 shadow-[0_2px_0_#000,0_1px_4px_#0006]
+        sm:px-3 sm:text-8
       ]
-        div[
-          absolute left-0 top-0 z-100 h-100 pointer-events-none w-full
-          bg-linear-to-b from-white/10 rounded-lg
-        ]
-        +WrapBox
-          +Img("images/ezequiel-humano/sm.webp")
-          div[flex-cc text-center]
-            div[text-center]
-              div[flex-cc w-full font-serif text-20 text-center uppercase] Hey
-              | My name is <span class="font-serif">Ezequiel Adrián Schwartzman</span>.
-              div I'm a <strong>free software developer</strong>.
-              div If you are on Team Gaia, I'm on your team.
-              div
-                | My main creative project at the moment is <a class="text-blue hover:underline font-bold" href="https://webjam.space" target="_blank">Web Jam</a>.
-                
-        +WrapBox  
-          +Img("images/ezequiel-mate/sm.webp")
-          div[flex flex-col]
-            +Img("images/ezequiel-mate-termo/sm.webp")
-            div[flex-cc flex-col flex-grow text-center pt12 sm:pt-0]
-              span You can find my previous work at 
-              a[text-blue underline](href="https://web7.ezequielschwartzman.org") https://web7.ezequielschwartzman.org
-          
-        div[grid gap-3 cols-2 md:gap-6]
-          +Img("images/ezequiel-karina/sm.webp")
-          +Img("images/ezequiel-nami/sm.webp")
-        div[grow px6 text-center]
-          | I'm also a human being with a human face.
-          | You can find me holding space at <a class="text-blue underline" href="https://casanami.art">Casa Nami</a> co-living in Mar del Plata, Argentina, where I'm holding space for evolutionary convivency.
-          div[mt12]
-            span Contact me on:
-            div[text-4 uppercase]
-              a[text-sky-400 hover:(bg-sky-300 text-white) px1 py1 rounded-1  font-mono](href="https://t.me/ezequielschwartzman")
-                span[mr1.5 text-2.5em icon-fab-telegram inline-block translate-y-2px]
-                | Telegram
-              span[mx1.5 mr3 text-3 mt1 font-bold]  or
-              a[text-green-400 font-mono hover:(bg-green-300 text-white) px1 py1 rounded-1](href="https://wa.me/5492235235568")
-                span[mr1.5 text-2.5em icon-fab-whatsapp inline-block translate-y-2px]
-                | Whatsapp
-        a[
-          flex-cc px6 w-full font-mono text-6/12 text-center text-shadow-[0_1px_0_#0007]
-          text-white b b-1px-black/10 b-black/20 bg-yellow-400 rounded-2
-          hover:bg-yellow-300
-        ](target="_blank" href="https://forms.gle/pkvnMysirAUopCzj6")
-          | Consider supporting WebJam project
-
-  +Ring(
-      "Gaia", "https://gaia.webjam.space",
-      "Ezequiel Adrián Schwartzman", "https://ezequielschwartzman.org",
-      "Gaia", "https://gaia.webjam.space"
-    )
+        block
+    div[flex flex-col gap-1 max-w-screen-2xl mx-auto p1 sm:gap-3 sm:p6] 
+      +ROW(40)
+        +CARD("1/3") About Me
+        +CARD("2/3")  Web Jam
+      +ROW(40)
+        +CARD("1/2")  Curriculum Vitae
+        +CARD("1/2")  Web Portfolio
+      +ROW(20)
+        +CARD("1/1")  Web y Mates Club
+      +ROW(40)
+        +CARD("1/2")  Web Training
+        +CARD("1/2")  Web Engineering
+      +ROW(40)
+        +CARD("1/2")  Co-living Spaceholding
+        +CARD("1/2")  Emotional Healing Processing
+      +ROW(40)
+        +CARD("1/4")  Gaia Stickers
+        +CARD("1/4")  Writing
+        +CARD("1/4")  Cooking
+        +CARD("1/4")  Videoing
+    div[flex-cc h-48 font-mono text-white bg-black/40 bg-linear-to-t from-black/20]
+      | Is this the end?
