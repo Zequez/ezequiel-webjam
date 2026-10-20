@@ -128,7 +128,10 @@ mixin Header()
     b-b-4 b-b-black/20 b-t-1 b-t-white/30 bg-gray-800 bg-linear-to-t from-black/7 shadow-[0_2px_3px_#0005]
   ]
     div[absolute inset-x-0 top-1px h-1px bg-white/15]
-    // span Web Jam 0.2.0 is out.  <a class="underline" href="https://github.com/Zequez/web-jam-editor/blob/main/CHANGELOG.md">Check changelog</a>
+    span
+      <a class="underline" target="_blank" href="https://github.com/zequez/web-jam-editor">Web Jam 0.2.0</a> is out.  <a class="underline" href="https://github.com/Zequez/web-jam-editor/blob/main/CHANGELOG.md" target="_blank">Check changelog</a>
+      br
+      | Starring it on Github helps.
     
 +Page('index')
   +Header()
@@ -136,27 +139,29 @@ mixin Header()
   mixin ROW(h)
     div[flex gap-1 h-${h} w-full sm:gap-3]
       block
-  mixin CARD(w, link)
+  mixin CARD(w, link, C)
+    - const linkClass = 
     a[
-      flex-cc px-2 w-${w} break-all font-mono text-6
-      @container bg-gray-50 bg-linear-to-t from-black/5 overflow-hidden rounded-1 shadow-[0_2px_0_#000,0_1px_4px_#0006]
-      sm:px-3 sm:text-8
-    ](href=link)
+      flex-cs px-2 w-${w} break-all font-mono text-6
+      @container  bg-linear-to-t from-black/5 overflow-hidden rounded-1 shadow-[0_2px_0_#000,0_1px_4px_#0006]
+      sm:px-3 sm:text-8 text-shadow-[0_1px_0_#fff]
+      ${link ? `bg-${C}-200 hover:bg-${C}-400 hover:text-white hover:text-shadow-[0_-1px_0_#0006]` : 'bg-gray-50'}
+    ](href=link, target=((link || '').startsWith('http') ? '_blank' : ''))
       block
   div[flex flex-col gap-1 max-w-screen-2xl mx-auto p1 w-full sm:gap-3 sm:p6] 
     +ROW(40)
-      +CARD("1/3", "./about") About<br/>Ezequiel
-      +CARD("2/3")  Web Jam
+      +CARD("1/3", "./about", "sky") About<br/>Me
+      +CARD("2/3", "https://webjam.space", "lime")  Web Jam
     +ROW(40)
-      +CARD("1/2")  Curriculum<br/>Vitae
+      +CARD("1/2", "https://web7.ezequielschwartzman.org/curriculum-vitae", "purple")  Curriculum<br/>Vitae
       +CARD("1/2")  Web<br/>Portfolio
     +ROW(20)
-      +CARD("1/1")  Web y Mates Club
+      +CARD("1/1", "https://webmatesclub.ezequielschwartzman.org/", "orange")  Web y Mates Club
     +ROW(40)
       +CARD("1/2")  Web Training
       +CARD("1/2")  Web<br/>Engineering
     +ROW(40)
-      +CARD("1/2")  Co-living<br/>Spaceholding
+      +CARD("1/2", "https://casanami.art/", "pink")  Co-living<br/>Spaceholding
       +CARD("1/2")  Emotional<br/>Healing<br/>Processing
     +ROW(40)
       +CARD("1/4")  Gaia<br/>Stickers
@@ -164,7 +169,7 @@ mixin Header()
       +CARD("1/4")  Cooking
       +CARD("1/4")  Videoing
   div[flex-cc h-48 font-mono text-white bg-black/40 bg-linear-to-t from-black/20]
-    | Is this the end?
+    | Web developing...
 
 +Page('about')
   +Header()
@@ -221,7 +226,7 @@ mixin Header()
       p.
         And so I lived on that story for some time.
         
-      +H2 The Hacker Culture
+      +H2 Hacker Culture
       p.
         As my attention shifted more and more to computers and the Internet, I took on programming as a hobby.
         I will never forget the ecstatic feeling of writing a prompt-based program that would make a computer do things.
@@ -322,7 +327,50 @@ mixin Header()
         The desperate attempt to relate responsibly with Celeste did not end as I expected, and soon we were going our
         separate ways; Coral stuck in the middle of two adult-looking humans unable to relate in a healthy way with one another.
 
+      +H2 Parenting and villaging
+
       p.
+        Soon it was obvious that raising children was not something to be attempted by uninitiated grown up adolescents
+        with a lone wolf mentality living in a city and struggling to earn money to buy food.
+        At least not without some serious consequences.
+
+      p.
+        I was set on moving into a community. Children should be able to be outside with other children in a safe place where
+        there are no cars; not the city. Child raising was meant to be done as a village; not as nuclear families.
+
+      p.
+        I didn't know how it would happen, but I had my north star.
+        There were other people with my same values out there, and I needed to figure out how to connect with them.
+        And the clock was ticking, Coral was growing and missing out on growing up in a healthy community.
+
+      p.
+        My childhood home left to my mother, my brother and I after the divorce, became available just in time.
+        I moved into what's now Casa Nami and called the most value-resonant friend I had to move in with me.
+        The house featured 6 bedrooms; and he had 3 children and was also a lone father.
+        He had also lost his house in a fire earlier that year, so it was kind of a perfect match.
+
+      p.
+        Rodrigo took over the house essentially; with his entrepreneurial experience and can-do-it attitude
+        the energy started moving. Soon there were other house dwellers. And on that glorious summer of 2026
+        my future partner would move into the house. We organized festivals, workshops and anything with the word
+        holistic in it.
+
+      p.
+        This was all not without it's caveat. Relating was not smooth.
+        Spouts of violence and boundaries overstepped were common.
+        Sharing a house, sharing a kitchen with other people was not easy.
+        There were blockages to creating the intimacy we needed to related smoothly.
+        Blockages that I was not absurdly proficient at overcoming, none of us were.
+        And neither was absurdly effective at earning money either; we were getting by, convinced that
+        we should in theory be able to work together to do something big and profitable.
+
+      p.
+        Casa Nami took more dwellers; and left some; for some time there were only me and just women; that was peaceful.
+        When another man entered the picture it seemed the flow would be altered. At Casa Nami I'm learning
+        about women, and I'm learning about men. I'm learning how we relate with each other, what works and what does not,
+        and what it takes to be a responsible adult.
+
+      
         
         
         
