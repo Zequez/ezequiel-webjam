@@ -8,14 +8,11 @@ mixin EmojiFavicon(emoji)
 mixin Page(name)
   html(h-full="" name=name)
     head
-      link(
-        href="style.css" 
-        rel="stylesheet"
-        )
       title Ezequiel Adrián Schwartzman
       meta(content="https://github.com/zequez/ezequiel-webjam"  name="webjam-source")
       meta(content="width=device-width, initial-scale=1" name="viewport")
-      +EmojiFavicon("🌟")
+      meta(charset="utf-8") 
+      +EmojiFavicon("🌟") 
       style.
         @keyframes fade-in {
           0% { opacity: 0; }
@@ -139,12 +136,11 @@ mixin Header()
     div[flex gap-1 h-${h} w-full sm:gap-3]
       block
   mixin CARD(w, link, C)
-    - const linkClass = 
+    - const linkClass = link ? `hover:bg-${C}-400 hover:text-shadow-[0_-1px_0_#0006]  hover:text-white` : 'bg-gray-50';
     a[
-      flex-cs px-2 w-${w} break-all font-mono text-6
-      @container  bg-linear-to-t from-black/5 overflow-hidden rounded-1 shadow-[0_2px_0_#000,0_1px_4px_#0006]
-      sm:px-3 sm:text-8 text-shadow-[0_1px_0_#fff]
-      ${link ? `bg-${C}-200 hover:bg-${C}-400 hover:text-white hover:text-shadow-[0_-1px_0_#0006]` : 'bg-gray-50'}
+      flex-cs px-2 w-${w} break-all font-mono text-6 text-shadow-[0_1px_0_#fff]
+      @container ${linkClass} bg-${C}-200 bg-linear-to-t from-black/5 overflow-hidden rounded-1 shadow-[0_2px_0_#000,0_1px_4px_#0006]
+      sm:px-3 sm:text-8
     ](href=link, target=((link || '').startsWith('http') ? '_blank' : ''))
       block
   div[flex flex-col gap-1 max-w-screen-2xl mx-auto p1 w-full sm:gap-3 sm:p6] 
