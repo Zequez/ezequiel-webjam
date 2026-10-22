@@ -4,7 +4,6 @@ mixin EmojiFavicon(emoji)
     type="image/svg+xml"
     href=`data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
   )
-  
 
 mixin Page(name)
   html(h-full="" name=name)
@@ -34,11 +33,11 @@ mixin Page(name)
           let w = 0;
           let h = 0;
           let stars;
-           
+          
           function makeStars() {
             if (!(w && h)) return;
             const count = Math.floor((w * h) / density); 
-             
+            
             stars = new Array(count).fill(null).map(() => ({
               x: Math.random() * w,
               y: Math.random() * h,
@@ -132,7 +131,7 @@ mixin Header()
       <a class="underline" target="_blank" href="https://github.com/zequez/web-jam-editor">Web Jam 0.2.0</a> is out.  <a class="underline" href="https://github.com/Zequez/web-jam-editor/blob/main/CHANGELOG.md" target="_blank">Check changelog</a>
       br
       | Starring it on Github helps.
-    
+
 +Page('index')
   +Header()
   
@@ -160,9 +159,9 @@ mixin Header()
     +ROW(40)
       +CARD("1/2")  Web Training
       +CARD("1/2")  Web<br/>Engineering
-    +ROW(40)
-      +CARD("1/2", "https://casanami.art/", "pink")  Co-living<br/>Spaceholding
-      +CARD("1/2")  Emotional<br/>Healing<br/>Processing
+    +ROW(80)
+      +CARD("1/2", "https://casanami.art/", "pink")  Spaceholding for Co-living<br/>Co-working<br/>Hacking Space<br/>
+      +CARD("1/2")  Personal<br/>Service / Healing<br/>Coaching &amp; Feedback
     +ROW(40)
       +CARD("1/4")  Gaia<br/>Stickers
       +CARD("1/4")  Writing
@@ -369,13 +368,3 @@ mixin Header()
         When another man entered the picture it seemed the flow would be altered. At Casa Nami I'm learning
         about women, and I'm learning about men. I'm learning how we relate with each other, what works and what does not,
         and what it takes to be a responsible adult.
-
-      
-        
-        
-        
-        
-        
-        
-
-      
