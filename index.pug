@@ -3,7 +3,79 @@ mixin EmojiFavicon(emoji)
     rel="icon"
     type="image/svg+xml"
     href=`data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
-  )
+  ) 
+
+mixin Starrify(id)
+  script.
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('!{id}');
+      const ctx = canvas.getContext('2d');
+      const density = 20;
+      let w = 0;
+      let h = 0;
+      let stars;
+      
+      function makeStars() {
+        if (!(w && h)) return;
+        const count = Math.floor((w * h) / density); 
+        
+        stars = new Array(count).fill(null).map(() => ({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 1.2 + 0.2,
+          hue:
+            Math.random() > 0.05
+              ? Math.random() * 60 + 200
+              : Math.random() * 40 + 0, // bluish to whitish
+          twinkle: Math.random() * Math.PI * 2,
+        }));
+        
+        
+        ctx.fillStyle   = 'white';
+        ctx.beginPath()
+        const [x, y, radius] = [20, 20, 1]
+        ctx.arc(x, y, radius, 0, Math.PI * 2)
+        ctx.fill()
+      }
+       
+      function draw() {
+        for (const s of stars) {
+          const intensity =
+            0.5 + 0.5 * Math.sin((s.twinkle += 0.02 + Math.random() * 0.01));
+          ctx.beginPath();
+          ctx.fillStyle = `hsl(${s.hue}, 100%, ${70 * intensity}%)`;
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+         
+         
+      function reprocess() {
+        if (!canvas) return;
+        const { width, height } = canvas.getBoundingClientRect();
+        w = width;
+        h = height;
+        canvas.width = w;
+        canvas.height = h;
+        makeStars();
+        draw();
+      }
+       
+      const DEBOUNCE = 100;
+      let debounceTimer = 0;
+      function resize() {
+        if (debounceTimer) {
+          clearTimeout(debounceTimer);
+        }
+        debounceTimer = setTimeout(() => {
+          reprocess();
+        }, DEBOUNCE);
+      }
+      
+      window.addEventListener("resize", resize);
+      
+      reprocess();;
+    })
 
 mixin Page(name)
   html(h-full="" name=name)
@@ -21,77 +93,6 @@ mixin Page(name)
         }
     body[flex flex-col min-h-full bg-[url(./images/old-moon-invert/md.webp)] bg-slate-400]
       block
-      // STARS!
-      script.
-        document.addEventListener('DOMContentLoaded', () => {
-          const canvas = document.getElementById('stars-canvas');
-          const ctx = canvas.getContext('2d');
-          const density = 20;
-          let w = 0;
-          let h = 0;
-          let stars;
-          
-          function makeStars() {
-            if (!(w && h)) return;
-            const count = Math.floor((w * h) / density); 
-            
-            stars = new Array(count).fill(null).map(() => ({
-              x: Math.random() * w,
-              y: Math.random() * h,
-              r: Math.random() * 1.2 + 0.2,
-              hue:
-                Math.random() > 0.05
-                  ? Math.random() * 60 + 200
-                  : Math.random() * 40 + 0, // bluish to whitish
-              twinkle: Math.random() * Math.PI * 2,
-            }));
-            
-            
-            ctx.fillStyle   = 'white';
-            ctx.beginPath()
-            const [x, y, radius] = [20, 20, 1]
-            ctx.arc(x, y, radius, 0, Math.PI * 2)
-            ctx.fill()
-          }
-           
-          function draw() {
-            for (const s of stars) {
-              const intensity =
-                0.5 + 0.5 * Math.sin((s.twinkle += 0.02 + Math.random() * 0.01));
-              ctx.beginPath();
-              ctx.fillStyle = `hsl(${s.hue}, 100%, ${70 * intensity}%)`;
-              ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-              ctx.fill();
-            }
-          }
-             
-             
-          function reprocess() {
-            if (!canvas) return;
-            const { width, height } = canvas.getBoundingClientRect();
-            w = width;
-            h = height;
-            canvas.width = w;
-            canvas.height = h;
-            makeStars();
-            draw();
-          }
-           
-          const DEBOUNCE = 100;
-          let debounceTimer = 0;
-          function resize() {
-            if (debounceTimer) {
-              clearTimeout(debounceTimer);
-            }
-            debounceTimer = setTimeout(() => {
-              reprocess();
-            }, DEBOUNCE);
-          }
-          
-          window.addEventListener("resize", resize);
-          
-          reprocess();;
-        })
 
 mixin Header()
   div[flex flex-col gap-1 max-w-screen-sm mx-auto p1 sm:p6]
@@ -104,6 +105,7 @@ mixin Header()
           bg-black lh-160% overflow-hidden rounded-1 shadow-sm sm:h-30 sm:px3 sm:text-5/8
         ]
           canvas[absolute block left-0 top-0 h-100% w-100%](id="stars-canvas")
+          +Starrify('stars-canvas')
           
           a[absolute flex-cc inset-4 bg-gradient-to-t bg-white from-black/5 rounded-3](href=".") Ezequiel <br class="sm:hidden"/> Adrián <br/> Schwartzman
         div[grow hidden px3 text-center bg-white rounded-1 shadow-sm sm:flex-cc]
@@ -165,37 +167,38 @@ mixin Header()
       +CARD("1/4")  Videoing
   div[flex-cc h-48 font-mono text-white bg-black/40 bg-linear-to-t from-black/20]
     | Web developing...
-
+ 
 +Page('about')
   +Header()
-  style.
+  style. 
     p {
       margin-bottom: 1rem;
+      letter-spacing: 1px;
     }
   div[max-w-screen-md mx-auto px-1 w-full sm:px-6]
     div[
-      grow mb24 p3 pb24! w-full text-4.5/6 text-black/77
+      grow mb24 p3 pb24! w-full text-3.7/6 text-black/77
       bg-gradient-to-t bg-gray-50 from-black/5 rounded-b-8 shadow-[2px_1px_3px_#0005,-2px_1px_3px_#0005]
       sm:p6
     ]
       mixin H2()
-        h2[font-bold text-8/12 text-black/66 text-shadow-[]]
+        h2[ font-mono text-6/12  text-black/66]
           block
           
-      h1[font-mono text-12/24 sm:text-18] About Me
+      h1[font-mono text-8/24 sm:text-12] About Me
       +H2 I was born
-      p.
+      :markdown
         ...on 14 of December of 1992, under the influence of Aquarius on the horizon.
-      p.
+
         My mother was to be Mirta Liliana Cappelluti, and my father Guillermo Daniel Schwartzman.
         Of italian and jewish-polish heritage.
         I was their second son.
-      p.
+
         I was delivered in the Colón Clinic, in the city of Mar del Plata, Argentina.
         City where I would spend most of my child and adult life.
-      p.
+
         I grew up in the neighbourhood of Punta Mogotes.
-      p.
+        
         For the most part I was a sensitive child.
         And for the most part my early memories are a blank.
         I remember liking animals.
@@ -281,7 +284,7 @@ mixin Header()
         Buddhist lead to binge-hearing Philosophize This podcasts, and finally I reached the end of Modern Culture.
         Someone had made a book named Materialism is Balooneys; and someone mentioned this book on a video from
         the Institute of Noetic Sciences.
-      p.
+      p. 
         A few books down and I was no longer an atheist.
         I could conceive of a benevolent universal intelligence at work in reality.
         Soon I was experimenting with psychedelics and wanted to try all the drugs in the world.
@@ -364,3 +367,5 @@ mixin Header()
         When another man entered the picture it seemed the flow would be altered. At Casa Nami I'm learning
         about women, and I'm learning about men. I'm learning how we relate with each other, what works and what does not,
         and what it takes to be a responsible adult.
+
+      div[]
