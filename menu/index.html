@@ -1,0 +1,83 @@
+<!DOCTYPE html><html h-full name="menu"><head><script>
+      const $ = (selector, context = document) =>
+        context.querySelector(selector);
+
+      const $$ = (selector, context = document) =>
+        context.querySelectorAll(selector);
+    </script><base href="/"><title>Ezequiel Adrián Schwartzman</title><meta content="https://github.com/zequez/ezequiel-webjam" name="webjam-source"><meta content="width=device-width, initial-scale=1" name="viewport"><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 100 100&quot;><text y=&quot;.9em&quot; font-size=&quot;90&quot;>🌟</text></svg>"><style>@keyframes fade-in {
+  0% { opacity: 0; }
+  20% {opacity: 0;}
+  100% { opacity: 1; }
+}</style><link rel="stylesheet" href="style.css"></head><body class="flex flex-col min-h-full bg-[url(./images/old-moon-invert/md.webp)] bg-slate-400"><div class="relative bg-gray-900"><div class="flex relative z-10 flex-col gap-1 max-w-screen-md mx-auto p3 md:p6 sm:px6 sm:py12"><div class="grid cols-2 gap-3 md:gap-6"><div class="w-full sm:row-span-3 rounded-2 b b-white/80 overflow-hidden shadow-[0_0_20px_0_#fff9] h-110"><img class="size-full object-cover" src="./images/ezequiel-humano/md.webp"></div><!--div[flex flex-col gap-1 font-mono whitespace-nowrap sm:gap-3 md:gap-6]--><a class="text-[5vw] py4 h-full sm:h-70 sm:text-5/8  text-center text-black lh-160% flex-cc inset-4 bg-gradient-to-t bg-white font-mono from-black/5 rounded-1 shadow-[0_0_20px_0_#fff9]" href=".">Ezequiel <br class="sm:hidden"> Adrián <br> Schwartzman</a><div class="grow p3 col-span-2 sm:col-span-1 text-yellow-900 text-center rounded-1 text-shadow-[0_1px_0_#fff8] bg-linear-to-b from-white/10 flex-cc shadow-[0_0_20px_0_#fff9,inset_0_0_6px_#fff8] bg-yellow-200  font-mono font-bold"><span>Free Software Developer</span></div><div class="grow p3 col-span-2 sm:col-span-1 text-yellow-900/70 text-center rounded-1 text-shadow-[0_1px_0_#fff8] bg-linear-to-b from-white/10 flex-cc shadow-[0_0_20px_0_#fff9,inset_0_0_6px_#fff8] bg-yellow-200 saturate-20 opacity-80  font-mono font-bold"><span>Possibilitator <i>in-training</i></span></div></div></div><canvas class="absolute block left-0 top-0 h-100% w-100%" id="stars-canvas"><script>document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('stars-canvas');
+  const ctx = canvas.getContext('2d');
+  const density = 50;
+  let w = 0;
+  let h = 0;
+  let stars;
+  
+  function makeStars() {
+    if (!(w && h)) return;
+    const count = Math.floor((w * h) / density); 
+    
+    stars = new Array(count).fill(null).map(() => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.2 + 0.2,
+      hue:
+        Math.random() > 0.05
+          ? Math.random() * 60 + 200
+          : Math.random() * 40 + 0, // bluish to whitish
+      twinkle: Math.random() * Math.PI * 2,
+    }));
+    
+    
+    ctx.fillStyle   = 'white';
+    ctx.beginPath()
+    const [x, y, radius] = [20, 20, 1]
+    ctx.arc(x, y, radius, 0, Math.PI * 2)
+    ctx.fill()
+  }
+   
+  function draw() {
+    for (const s of stars) {
+      const intensity =
+        0.5 + 0.5 * Math.sin((s.twinkle += 0.02 + Math.random() * 0.01));
+      ctx.beginPath();
+      ctx.fillStyle = `hsl(${s.hue}, 100%, ${70 * intensity}%)`;
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+     
+     
+  function reprocess() {
+    if (!canvas) return;
+    const { width, height } = canvas.getBoundingClientRect();
+    w = width;
+    h = height;
+    canvas.width = w;
+    canvas.height = h;
+    makeStars();
+    draw();
+  }
+   
+  const DEBOUNCE = 100;
+  let debounceTimer = 0;
+  function resize() {
+    if (debounceTimer) {
+      clearTimeout(debounceTimer);
+    }
+    debounceTimer = setTimeout(() => {
+      reprocess();
+    }, DEBOUNCE);
+  }
+  
+  window.addEventListener("resize", resize);
+  
+  reprocess();;
+})
+</script></canvas></div><div class="
+    flex-cc relative h-60px p6 font-mono text-lime-300 mb3
+     bg-gray-800 bg-linear-to-t from-black/7 shadow-[0_2px_3px_#0005] saturate-80
+  "><div class="bg-[url(images/pixel-substrate-art/md.webp)] bg-repeat w-full h-full absolute inset-0 [image-rendering:pixelated] bg-size-[48px_60px]"></div><div class="absolute inset-x-0 top-1px h-2px bg-white/40"></div><div class="absolute inset-0 bg-linear-to-b from-white/10"></div><div class="absolute inset-x-0 bottom-0 h-3px bg-black/20"></div></div><div class="p4"><div class="font-mono text-12 text-center font-bold text-white mb4 text-shadow-[0_2px_0_#000]">Servicios Informáticos</div><div class="mx-auto max-w-screen-md w-full grid cols-1 gap-4"><div class="w-full rounded-2  bg-linear-to-t from-black/8 shadow-md bg-amber-100 p4"><h2 class="text-6 font-mono text-shadow-[0_1px_0_#fff] font-bold text-black/80">Nota del autor</h2><p class="my4">Soy desarrollador de software libre y artesano del Internet. Estoy desarrollando Web Jam, una herramienta gratuita y de código abierto para que cualquier persona pueda crear y publicar sus propios sitios web.</p><p class="my4">Estoy distribuyendo esta herramienta tan rápido como me sea posible, porque quiero que más personas puedan utilizarla, y porque esa distribución también me permite sostener y continuar desarrollando el proyecto.</p><p class="my4">Por eso ofrezco sesiones individuales de creación web: nos encontramos, trabajamos juntos en tu sitio y te acompaño a publicarlo.</p><p class="my4"><strong>No necesitás saber programar.</strong> Vamos construyendo paso a paso, compartiendo herramientas y conocimientos.</p><p class="my4">Y el vínculo no termina cuando termina la sesión: también vas a contar conmigo por mensajes para consultas y acompañamiento mientras seguís desarrollando tu sitio.</p><p class="my4 font-bold">Una sesión de 90 minutos:</p><ul class="list-disc list-inside pl2 my4"><li>$30.000 ARS (Argentina)</li><li>US$ 30 (internacional)</li></ul><p class="my4">Al contratar este acompañamiento, también estás contribuyendo directamente al desarrollo y la distribución de software libre.</p></div><div class="w-full rounded-2 aspect-200/100 bg-linear-to-t from-black/8 shadow-md bg-lime-100 p4"><div class="bg-gray-600 rounded-1.5 shadow-sm h-30 w-full"></div><div class="text-center font-mono text-6 font-bold text-black/80 my4">Acompañamiento Web Personal</div><p class="my4 text-center -mt2 italic">Construí tu lugar en Internet, con un artesano a tu lado.</p><p class="font-bold">Cada encuentro incluye: </p><ul class="list-disc list-inside pl2 my4"><li>90 minutos de trabajo individual.</li><li>Creación y publicación de tu sitio web con Web Jam.</li><li>Transferencia de conocimientos para que puedas continuar por tu cuenta.</li><li>30 días de acompañamiento posterior por mensajes.</li></ul><hr class="opacity-25 my4"><p class="my4 font-bold">Continuidad mensual</p><p class="my4">Podés volver a encontrarte conmigo una vez por mes para seguir desarrollando tu sitio, incorporar nuevas funcionalidades, aprender cosas nuevas o simplemente mantener tu presencia digital.</p></div><div class="bg-white">Hey</div></div></div></body></html>
