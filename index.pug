@@ -12,7 +12,7 @@ mixin Starrify(id)
     document.addEventListener('DOMContentLoaded', () => {
       const canvas = document.getElementById('!{id}');
       const ctx = canvas.getContext('2d');
-      const density = 20;
+      const density = 50;
       let w = 0;
       let h = 0;
       let stars;
@@ -95,43 +95,34 @@ mixin Page(name)
         }
     body[flex flex-col min-h-full bg-[url(./images/old-moon-invert/md.webp)] bg-slate-400]
       block
+ 
 
 mixin Header()
-  div[flex flex-col gap-1 max-w-screen-sm mx-auto p1 sm:p6]
-    div[flex gap-1 sm:gap-3]
-      div[shrink-0 w-1/2 bg-white/0 shadow-sm sm:w-1/3]
-        img[h-full rounded-1](src="./images/ezequiel-humano/md.webp")
-      div[flex flex-col grow gap-1 font-mono whitespace-nowrap sm:gap-3]
-        div[
-          flex-cc relative h-full px1 py3 font-bold text-[5vw] text-center text-black
-          bg-black lh-160% overflow-hidden rounded-1 shadow-sm sm:h-30 sm:px3 sm:text-5/8
-        ]
-          canvas[absolute block left-0 top-0 h-100% w-100%](id="stars-canvas")
-          +Starrify('stars-canvas')
-          
-          a[absolute flex-cc inset-4 bg-gradient-to-t bg-white from-black/5 rounded-3](href=".") Ezequiel <br class="sm:hidden"/> Adrián <br/> Schwartzman
-        div[grow hidden px3 text-center bg-white rounded-1 shadow-sm sm:flex-cc]
+  div[relative bg-gray-900]
+    div[flex relative z-10 flex-col gap-1 max-w-screen-md mx-auto p3 md:p6 sm:(px6 py12)]
+      div[grid cols-2 gap-3 md:gap-6]
+        div[w-full sm:row-span-3 rounded-2 b b-white/80 overflow-hidden shadow-[0_0_20px_0_#fff9] h-110]
+          img[size-full object-cover](src="./images/ezequiel-humano/md.webp")
+        //div[flex flex-col gap-1 font-mono whitespace-nowrap sm:gap-3 md:gap-6]
+  
+        a[text-[5vw] py4 h-full sm:h-70 sm:text-5/8  text-center text-black lh-160% flex-cc inset-4 bg-gradient-to-t bg-white font-mono from-black/5 rounded-1 shadow-[0_0_20px_0_#fff9]](href=".") Ezequiel <br class="sm:hidden"/> Adrián <br/> Schwartzman
+        div[grow p3 col-span-2 sm:col-span-1 text-yellow-900 text-center rounded-1 text-shadow-[0_1px_0_#fff8] bg-linear-to-b from-white/10 flex-cc shadow-[0_0_20px_0_#fff9,inset_0_0_6px_#fff8] bg-yellow-200  font-mono font-bold]
           span Free Software Developer
-        div[grow hidden px3 text-center bg-white rounded-1 shadow-sm sm:flex-cc]
+        div[grow p3 col-span-2 sm:col-span-1 text-yellow-900/70 text-center rounded-1 text-shadow-[0_1px_0_#fff8] bg-linear-to-b from-white/10 flex-cc shadow-[0_0_20px_0_#fff9,inset_0_0_6px_#fff8] bg-yellow-200 saturate-20 opacity-80  font-mono font-bold]
           span
             | Possibilitator 
-            i in training
-    div[flex flex-col gap-1 font-mono sm:hidden]
-      div[flex-cc grow px3 text-center bg-white h12 rounded-1]
-        span Free Software Developer
-      div[flex-cc grow px3 text-center bg-white h12 rounded-1]
-        span
-          | Possibilitator 
-          i in training
+            i in-training
+
+    canvas[absolute block left-0 top-0 h-100% w-100%](id="stars-canvas")
+      +Starrify('stars-canvas')
   div[
-    flex-cc relative h-24 p6 font-mono text-lime-300
-    b-b-4 b-b-black/20 b-t-1 b-t-white/30 bg-gray-800 bg-linear-to-t from-black/7 shadow-[0_2px_3px_#0005]
+    flex-cc relative h-60px p6 font-mono text-lime-300
+     bg-gray-800 bg-linear-to-t from-black/7 shadow-[0_2px_3px_#0005] saturate-80
   ]
-    div[absolute inset-x-0 top-1px h-1px bg-white/15]
-    span
-      <a class="underline" target="_blank" href="https://github.com/zequez/web-jam-editor">Web Jam 0.2.0</a> is out.  <a class="underline" href="https://github.com/Zequez/web-jam-editor/blob/main/CHANGELOG.md" target="_blank">Check changelog</a>
-      br
-      | Starring it on Github helps.
+    div[bg-[url(images/pixel-substrate-art/md.webp)] bg-repeat w-full h-full absolute inset-0 [image-rendering:pixelated] bg-size-[48px_60px]]
+    div[absolute inset-x-0 top-1px h-2px bg-white/40]
+    div[absolute inset-0 bg-linear-to-b from-white/10]
+    div[absolute inset-x-0 bottom-0 h-3px bg-black/20]
 
 +Page('index')
   +Header()
@@ -140,35 +131,43 @@ mixin Header()
     div[flex gap-1 h-${h} w-full sm:gap-3]
       block
   mixin CARD(w, link, C)
-    - const linkClass = link ? `hover:bg-${C}-400 hover:text-shadow-[0_-1px_0_#0006]  hover:text-white` : 'bg-gray-50';
+    - const linkClass = link ? `hover:bg-${C}-400 hover:text-shadow-[0_-1px_0_#0006]  hover:text-white` : 'bg-gray-50 opacity-25';
     a[
-      flex-cs px-2 w-${w} break-all font-mono text-6 text-shadow-[0_1px_0_#fff]
+      flex-cs px-2 w-${w} font-mono text-6 text-shadow-[0_1px_0_#fff] hover:duration-100 transition-[background-color] duration-700
       @container ${linkClass} bg-${C}-200 bg-linear-to-t from-black/5 overflow-hidden rounded-1 shadow-[0_2px_0_#000,0_1px_4px_#0006]
       sm:px-3 sm:text-8
     ](href=link, target=((link || '').startsWith('http') ? '_blank' : ''))
       block
-  div[flex flex-col gap-1 max-w-screen-2xl mx-auto p1 w-full sm:gap-3 sm:p6] 
+  div[flex flex-col gap-1.5 max-w-screen-2xl mx-auto p3 w-full sm:gap-3 sm:p6] 
     +ROW(40)
       +CARD("1/3", "./about", "sky") About<br/>Me
       +CARD("2/3", "https://webjam.space", "lime")  Web Jam
+    +ROW(50)
+      +CARD("100%", "https://sitios.ezequielschwartzman.org", "emerald")
+        div[text-center w-full] Pedidos de sitios web y entrenamiento práctico
+    +ROW(30)
+      +CARD("100%")
+        div[text-center w-full]
+          | Web Engineering
     +ROW(40)
       +CARD("1/2", "https://web7.ezequielschwartzman.org/curriculum-vitae", "purple")  Curriculum<br/>Vitae
       +CARD("1/2")  Web<br/>Portfolio
+    
+   
     +ROW(20)
       +CARD("1/1", "https://webmatesclub.ezequielschwartzman.org/", "orange")  Web y Mates Club
     +ROW(40)
-      +CARD("1/2")  Web Training
-      +CARD("1/2")  Web<br/>Engineering
-    +ROW(80)
-      +CARD("1/2", "https://casanami.art/", "pink")  Spaceholding for Co-living<br/>Co-working<br/>Hacking Space<br/>
-      +CARD("1/2")  Personal<br/>Service / Healing<br/>Coaching &amp; Feedback
-    +ROW(40)
+      +CARD("100%", "https://casanami.art/", "pink")  Casa  Nami co-living<br/>
+      //+CARD("1/2")  Personal<br/>Service / Healing<br/>Coaching &amp; Feedback
+    //+ROW(40)
       +CARD("1/4")  Gaia<br/>Stickers
       +CARD("1/4")  Writing
       +CARD("1/4")  Cooking
       +CARD("1/4")  Videoing
-  div[flex-cc h-48 font-mono text-white bg-black/40 bg-linear-to-t from-black/20]
-    | Web developing...
+  div[flex-cc h-48 p4 font-mono text-center text-white bg-black/40 bg-linear-to-t from-black/20]
+    div
+      | Contact to <a href="https://t.me/ezequielschwartzman" target="_blank" class="text-sky-500 underline">Telegram</a>, <a href="https://wa.me/5492235235568" target="_blank" class="text-sky-500 underline">Whatsapp</a> or <a href="mailto:ezequielschwartzman@gmail.com" target="_blank" class="text-sky-500 underline">email</a>
+    
  
 +Page('about')
   +Header()
@@ -177,7 +176,7 @@ mixin Header()
       margin-bottom: 1rem;
       letter-spacing: 1px;
     }
-  div[max-w-screen-md mx-auto px-1 w-full sm:px-6]
+  div[max-w-screen-md mx-auto px-3 w-full sm:px-6]
     div[
       grow mb24 p3 pb24! w-full text-3.7/6 text-black/77
       bg-gradient-to-t bg-gray-50 from-black/5 rounded-b-8 shadow-[2px_1px_3px_#0005,-2px_1px_3px_#0005]
