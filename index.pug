@@ -1,5 +1,6 @@
 - const CNAME = 'ezequielschwartzman.org'
 
+//# EmojiFavicon
 mixin EmojiFavicon(emoji)
   link(
     rel="icon"
@@ -7,6 +8,7 @@ mixin EmojiFavicon(emoji)
     href=`data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">${emoji}</text></svg>`
   )  
 
+//# Starrify
 mixin Starrify(id)
   script.
     document.addEventListener('DOMContentLoaded', () => {
@@ -79,11 +81,11 @@ mixin Starrify(id)
       reprocess();;
     })
 
+//#  Page
 mixin Page(name)
   html(h-full="" name=name)
     head
       title Ezequiel Adrián Schwartzman
-      meta(content="https://github.com/zequez/ezequiel-webjam"  name="webjam-source")
       meta(content="width=device-width, initial-scale=1" name="viewport")
       meta(charset="utf-8") 
       +EmojiFavicon("🌟") 
@@ -93,37 +95,85 @@ mixin Page(name)
           20% {opacity: 0;}
           100% { opacity: 1; }
         }
+        
+        .md h1, .md h2, .md h3, .md p, .md ul, .md ol {
+          @apply my3;
+        }
+
+        .md h1 {
+          @apply text-6/12;
+        }
     body[flex flex-col min-h-full bg-[url(./images/old-moon-invert/md.webp)] bg-slate-400]
       block
  
 
+
+//# Header
 mixin Header()
   div[relative bg-gray-900]
-    div[flex relative z-10 flex-col gap-1 max-w-screen-md mx-auto p3 md:p6 sm:(px6 py12)]
-      div[grid cols-2 gap-3 md:gap-6]
-        div[w-full sm:row-span-3 rounded-2 b b-white/80 overflow-hidden shadow-[0_0_20px_0_#fff9] h-110]
+    div[flex flex-col relative z-10 gap-1 max-w-screen-md mx-auto p3 md:p6 sm:(px6 py12)]
+      div[grid gap-3 cols-2 md:gap-6]
+        div[h-110 w-full b b-white/80 overflow-hidden rounded-2 shadow-[0_0_20px_0_#fff9] sm:row-span-3]
           img[size-full object-cover](src="./images/ezequiel-humano/md.webp")
         //div[flex flex-col gap-1 font-mono whitespace-nowrap sm:gap-3 md:gap-6]
   
-        a[text-[5vw] py4 h-full sm:h-70 sm:text-5/8  text-center text-black lh-160% flex-cc inset-4 bg-gradient-to-t bg-white font-mono from-black/5 rounded-1 shadow-[0_0_20px_0_#fff9]](href=".") Ezequiel <br class="sm:hidden"/> Adrián <br/> Schwartzman
-        div[grow p3 col-span-2 sm:col-span-1 text-yellow-900 text-center rounded-1 text-shadow-[0_1px_0_#fff8] bg-linear-to-b from-white/10 flex-cc shadow-[0_0_20px_0_#fff9,inset_0_0_6px_#fff8] bg-yellow-200  font-mono font-bold]
+        a[flex-cc inset-4 h-full py4 font-mono text-[5vw] text-center text-black bg-gradient-to-t bg-white from-black/5 lh-160% rounded-1 shadow-[0_0_20px_0_#fff9] sm:h-70 sm:text-5/8](href=".") Ezequiel <br class="sm:hidden"/> Adrián <br/> Schwartzman
+        div[flex-cc grow p3 font-bold font-mono text-center text-shadow-[0_1px_0_#fff8] text-yellow-900 bg-linear-to-b bg-yellow-200 col-span-2 from-white/10 rounded-1 shadow-[0_0_20px_0_#fff9,inset_0_0_6px_#fff8] sm:col-span-1]
           span Free Software Developer
-        div[grow p3 col-span-2 sm:col-span-1 text-yellow-900/70 text-center rounded-1 text-shadow-[0_1px_0_#fff8] bg-linear-to-b from-white/10 flex-cc shadow-[0_0_20px_0_#fff9,inset_0_0_6px_#fff8] bg-yellow-200 saturate-20 opacity-80  font-mono font-bold]
+        div[flex-cc grow p3 font-bold font-mono text-center text-shadow-[0_1px_0_#fff8] text-yellow-900/70 bg-linear-to-b bg-yellow-200 col-span-2 from-white/10 opacity-80 rounded-1 saturate-20 shadow-[0_0_20px_0_#fff9,inset_0_0_6px_#fff8] sm:col-span-1]
           span
             | Possibilitator 
             i in-training
 
     canvas[absolute block left-0 top-0 h-100% w-100%](id="stars-canvas")
       +Starrify('stars-canvas')
-  div[
-    flex-cc relative h-60px p6 font-mono text-lime-300
-     bg-gray-800 bg-linear-to-t from-black/7 shadow-[0_2px_3px_#0005] saturate-80
-  ]
-    div[bg-[url(images/pixel-substrate-art/md.webp)] bg-repeat w-full h-full absolute inset-0 [image-rendering:pixelated] bg-size-[48px_60px]]
+  div[flex-cc relative h-60px p6 font-mono text-lime-300 bg-gray-800 bg-linear-to-t from-black/7 saturate-80 shadow-[0_2px_3px_#0005]]
+    div[absolute inset-0 h-full w-full bg-[url(images/pixel-substrate-art/md.webp)] bg-repeat bg-size-[48px_60px] [image-rendering:pixelated]]
     div[absolute inset-x-0 top-1px h-2px bg-white/40]
     div[absolute inset-0 bg-linear-to-b from-white/10]
-    div[absolute inset-x-0 bottom-0 h-3px bg-black/20]
+    div[absolute bottom-0 inset-x-0 h-3px bg-black/20]
 
+
+//# Engineering
++Page('engineering')
+  +Header()
+  div[text-white p6]
+    | Engineering services; placeholder.<br/> My standard rate is US$ 45 / hour. And my standard availability is about 6hs / week for deep engineering work. Contact on <a class="underline text-sky-300" href="https://t.me/ezequielschwartzman">Telegram</a>.
+
+
+//# Engineering
++Page('gestacion-sitios')
+  +Header()
+  div[text-white p6]
+    | Armo sitios web y los evoluciono al punto que te sientas en confianza de compartirlo públicamente en una semana. Te enseño como gestionarlo por tu cuenta y entrenamiento práctico. Tomo un cliente por semana. Precio estándar es $150mil pesos argentinos por sitio; costo de registro de dominios por separado.
+
+
+//# El Problema Con el Internet
++Page('el-problema-con-el-internet')
+  +Header()
+  div[max-w-screen-sm mx-auto p2 sm:p6 ]
+    div[bg-gray-50 text-black p6 rounded-1 shadow-sm md]
+      :markdown
+        # El problema con el Internet-Moderno
+  
+        Yo habito el Internet desde hace muchos años. En su concepción el Internet fue ideado como un lugar donde la humanidad podria colaborar creativamente, tejiendo redes interconectadas de servicios, arte e información.
+  
+        El cambio cultural de colaborar en una escala global fue difícil. Y como es tradicional, encontramos formas de facilitarlo con más tecnología.
+        
+        En principio el Internet no era más que computadoras que podían comunicarse unas con otras a través de cables que iban alrededor del mundo. Lo esencial para crear al Internet moderno ya estaba dado.
+        
+        Mediante el inteligente manejo de la sincronización con mensajes, múltiples pantallas podían estar conectadas simultaneamente en cientos de lugares mostrando la misma información, y a diferencia de la televisión, uno podia modificar esa información y se vería reflejado en todas las otras pantallas.
+  
+        Un paso más dio luz a la web, también conocida como WWW (World Wide Web). Alguien inventó un tipo de documento llamado HTML (Hiper Text Markup Language), que cuando era procesado con una computadora, podría generar una imagen visual interactiva que cualquier computadora podría leer.
+
+        A diferencia de un documento convencional, los documentos de Hiper Texto se puede conectar unos a otros mediante links; lo que abre las puertas a crear cuerpos de información no-lineales decentralizados.
+  
+        ## El problema
+  
+        El problema es que las personas que empezaron a lucrar usando el Internet se hicieron tan ricas y poderosas, y sus megacorporaciones tan gigantes e imposibles de ignorar, que pareciera que Instagram o Facebook son sinónimos con Internet, y no lo son. Hay personas que elijen o por cuestiones de fuerza mayor no pueden participar de las redes sociales, el publicar en un sitio web los proyectos de uno, en un lugar neutral y accesible a todos, es para mí, lo más sensato; no solo por su accesibilidad, sino también por la libertad creativa que uno le da por ser un sitio web y no una página en una red social.
+    
+
+//# Index
 +Page('index')
   +Header()
   
@@ -132,43 +182,53 @@ mixin Header()
       block
   mixin CARD(w, link, C)
     - const linkClass = link ? `hover:bg-${C}-400 hover:text-shadow-[0_-1px_0_#0006]  hover:text-white` : 'bg-gray-50 opacity-25';
-    a[
-      flex-cs px-2 w-${w} font-mono text-6 text-shadow-[0_1px_0_#fff] hover:duration-100 transition-[background-color] duration-700
-      @container ${linkClass} bg-${C}-200 bg-linear-to-t from-black/5 overflow-hidden rounded-1 shadow-[0_2px_0_#000,0_1px_4px_#0006]
-      sm:px-3 sm:text-8
-    ](href=link, target=((link || '').startsWith('http') ? '_blank' : ''))
+    a[flex-cs px-2 w-${w} font-mono text-6 text-shadow-[0_1px_0_#fff] @container ${linkClass} bg-${C}-200 bg-linear-to-t from-black/5 overflow-hidden rounded-1 shadow-[0_2px_0_#000,0_1px_4px_#0006] duration-700 transition-[background-color] hover:duration-100 sm:px-3 sm:text-8](href=link, target=((link || '').startsWith('http') ? '_blank' : ''))
       block
   div[flex flex-col gap-1.5 max-w-screen-2xl mx-auto p3 w-full sm:gap-3 sm:p6] 
     +ROW(40)
       +CARD("1/3", "./about", "sky") About<br/>Me
       +CARD("2/3", "https://webjam.space", "lime")  Web Jam
-    +ROW(50)
-      +CARD("100%", "https://sitios.ezequielschwartzman.org", "emerald")
-        div[text-center w-full] Pedidos de sitios web y entrenamiento práctico
+
+    // +ROW(50) 
+      div[w-1/3]
+        | Te enseño lo que sé
+        br
+        | Prácticas presenciales 1-1 conmigo donde te guío para que puedas avanzar por tu cuenta
+      div[w-1/3]
+        | Te armo lo que me pidas
+        br
+        | Sitios web, herramientas a medida, hojas de cálculo, aplicaciones.
+      div[w-1/3] 
+        | Me sumo a tu equipo
+        br
+        | Estoy a disposición para tomar responsabilidad por una parte de tu proyecto. Y te comunicacás conmigo como con un empleado.
+
+    +ROW('auto')
+      +CARD('1/3 py6', 'https://sitios.ezequielschwartzman.org', 'emerald') Entrenamiento Web Práctico
+      +CARD('1/3 py6', 'gestacion-sitios', 'cyan') Gestación de Sitios Web 
+      +CARD('1/3 py6', 'engineering', 'sky') Web Engineering
+
     +ROW(30)
-      +CARD("100%")
-        div[text-center w-full]
-          | Web Engineering
-    +ROW(40)
-      +CARD("1/2", "https://web7.ezequielschwartzman.org/curriculum-vitae", "purple")  Curriculum<br/>Vitae
-      +CARD("1/2")  Web<br/>Portfolio
+      +CARD("1/1", "https://web7.ezequielschwartzman.org/curriculum-vitae", "purple")  Curriculum Vitae · Portfolio
     
    
     +ROW(20)
       +CARD("1/1", "https://webmatesclub.ezequielschwartzman.org/", "orange")  Web y Mates Club
     +ROW(40)
-      +CARD("100%", "https://casanami.art/", "pink")  Casa  Nami co-living<br/>
+      +CARD("100%", "https://casanami.art/", "pink")  Casa Nami <br/>  Habitaciones · Co-living<br/>
       //+CARD("1/2")  Personal<br/>Service / Healing<br/>Coaching &amp; Feedback
     //+ROW(40)
       +CARD("1/4")  Gaia<br/>Stickers
       +CARD("1/4")  Writing
       +CARD("1/4")  Cooking
       +CARD("1/4")  Videoing
+  
   div[flex-cc h-48 p4 font-mono text-center text-white bg-black/40 bg-linear-to-t from-black/20]
     div
       | Contact to <a href="https://t.me/ezequielschwartzman" target="_blank" class="text-sky-500 underline">Telegram</a>, <a href="https://wa.me/5492235235568" target="_blank" class="text-sky-500 underline">Whatsapp</a> or <a href="mailto:ezequielschwartzman@gmail.com" target="_blank" class="text-sky-500 underline">email</a>
     
- 
+
+//# About
 +Page('about')
   +Header()
   style. 
@@ -177,13 +237,9 @@ mixin Header()
       letter-spacing: 1px;
     }
   div[max-w-screen-md mx-auto px-3 w-full sm:px-6]
-    div[
-      grow mb24 p3 pb24! w-full text-3.7/6 text-black/77
-      bg-gradient-to-t bg-gray-50 from-black/5 rounded-b-8 shadow-[2px_1px_3px_#0005,-2px_1px_3px_#0005]
-      sm:p6
-    ]
+    div[grow mb24 p3 pb24! w-full text-3.7/6 text-black/77 bg-gradient-to-t bg-gray-50 from-black/5 rounded-b-8 shadow-[2px_1px_3px_#0005,-2px_1px_3px_#0005] sm:p6]
       mixin H2()
-        h2[ font-mono text-6/12  text-black/66]
+        h2[font-mono text-6/12 text-black/66]
           block
           
       h1[font-mono text-8/24 sm:text-12] About Me
@@ -369,4 +425,6 @@ mixin Header()
         about women, and I'm learning about men. I'm learning how we relate with each other, what works and what does not,
         and what it takes to be a responsible adult.
 
-      div[]
+      div[
+
+      ]
